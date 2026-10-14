@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 20th Birthday, Anjali 🌸</title>
+  <meta name="description" content="A personal birthday scrapbook made just for Anjali on her 20th birthday — 15 October 2026." />
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Optional background audio (starts OFF) -->
+  <audio id="bg-audio" loop preload="none">
+    <source src="assets/background-music.mp3" type="audio/mpeg" />
+  </audio>
+</head>
+
+<body>
+
+<!-- ┌─────────────────────────────────────────────────────────┐ -->
+<!-- │  CONFETTI CANVAS (fixed overlay)                        │ -->
+<!-- └─────────────────────────────────────────────────────────┘ -->
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ┌─────────────────────────────────────────────────────────┐ -->
+<!-- │  SECTION A — BIRTHDAY COVER                             │ -->
+<!-- └─────────────────────────────────────────────────────────┘ -->
+<section id="cover" role="region" aria-label="Birthday cover page">
+
+  <!-- Corner lily decorations -->
+  <svg class="cover-corner cover-corner--tl" viewBox="0 0 80 80" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 70 Q10 10 70 10" stroke="#b8936a" stroke-width="1" fill="none"/>
+    <path d="M10 70 Q20 20 70 20" stroke="#b8936a" stroke-width="0.6" fill="none" opacity="0.5"/>
+    <!-- lily bud -->
+    <ellipse cx="68" cy="12" rx="5" ry="8" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(-30 68 12)"/>
+    <ellipse cx="72" cy="10" rx="4" ry="7" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(10 72 10)"/>
+    <line x1="60" y1="20" x2="50" y2="35" stroke="#7a9b7e" stroke-width="1.2"/>
+    <ellipse cx="47" cy="38" rx="8" ry="4" fill="#7a9b7e" opacity="0.5" transform="rotate(-20 47 38)"/>
+  </svg>
+
+  <svg class="cover-corner cover-corner--tr" viewBox="0 0 80 80" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 70 Q10 10 70 10" stroke="#b8936a" stroke-width="1" fill="none"/>
+    <ellipse cx="68" cy="12" rx="5" ry="8" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(-30 68 12)"/>
+    <ellipse cx="72" cy="10" rx="4" ry="7" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(10 72 10)"/>
+    <line x1="60" y1="20" x2="50" y2="35" stroke="#7a9b7e" stroke-width="1.2"/>
+    <ellipse cx="47" cy="38" rx="8" ry="4" fill="#7a9b7e" opacity="0.5" transform="rotate(-20 47 38)"/>
+  </svg>
+
+  <svg class="cover-corner cover-corner--bl" viewBox="0 0 80 80" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 70 Q10 10 70 10" stroke="#b8936a" stroke-width="1" fill="none"/>
+    <ellipse cx="68" cy="12" rx="5" ry="8" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(-30 68 12)"/>
+    <ellipse cx="72" cy="10" rx="4" ry="7" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(10 72 10)"/>
+    <line x1="60" y1="20" x2="50" y2="35" stroke="#7a9b7e" stroke-width="1.2"/>
+    <ellipse cx="47" cy="38" rx="8" ry="4" fill="#7a9b7e" opacity="0.5" transform="rotate(-20 47 38)"/>
+  </svg>
+
+  <svg class="cover-corner cover-corner--br" viewBox="0 0 80 80" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 70 Q10 10 70 10" stroke="#b8936a" stroke-width="1" fill="none"/>
+    <ellipse cx="68" cy="12" rx="5" ry="8" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(-30 68 12)"/>
+    <ellipse cx="72" cy="10" rx="4" ry="7" fill="#f8f4ee" stroke="#c9848a" stroke-width="1" transform="rotate(10 72 10)"/>
+    <line x1="60" y1="20" x2="50" y2="35" stroke="#7a9b7e" stroke-width="1.2"/>
+    <ellipse cx="47" cy="38" rx="8" ry="4" fill="#7a9b7e" opacity="0.5" transform="rotate(-20 47 38)"/>
+  </svg>
+
+  <div class="cover-content">
+
+    <!-- Small label -->
+    <p class="cover-label">Made just for you</p>
+
+    <!-- Interactive lily note -->
+    <div style="position:relative;margin-bottom:0.6rem;">
+      <button
+        id="lily-trigger"
+        class="cover-lily-note"
+        aria-expanded="false"
+        aria-controls="lily-tooltip"
+        type="button"
+      >
+        <!-- White Lily SVG inline -->
+        <span class="lily-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+            <circle cx="20" cy="20" r="3.5" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+            <line x1="20" y1="33" x2="20" y2="40" stroke="#7a9b7e" stroke-width="1.5"/>
+          </svg>
+        </span>
+        A little something for someone who loves white lilies
+      </button>
+      <div id="lily-tooltip" class="lily-tooltip" role="tooltip" aria-live="polite">
+        Of course, your favourite flowers had to be here too. 🌸
+      </div>
+    </div>
+
+    <!-- Main heading -->
+    <h1 class="cover-heading">
+      Happy <em>20th</em> Birthday,<br/>Anjali!
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="cover-subtitle">
+      A little scrapbook for someone who made an unexpected place in my life.
+    </p>
+
+    <!-- Chapter 20 sticker -->
+    <div class="chapter-sticker" aria-label="Chapter 20 begins">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Chapter 20
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+
+    <!-- Open button -->
+    <div>
+      <button id="open-surprise-btn" class="cover-btn" type="button">
+        Open your surprise
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+  </div><!-- /cover-content -->
+</section>
+<!-- /cover -->
+
+
+<!-- ┌─────────────────────────────────────────────────────────┐ -->
+<!-- │  MAIN SCRAPBOOK (revealed on open)                      │ -->
+<!-- └─────────────────────────────────────────────────────────┘ -->
+<main id="scrapbook" aria-label="Birthday scrapbook for Anjali">
+
+  <!-- Site header (visible after cover) -->
+  <header class="site-header reveal">
+    <p class="site-header-label">15 October 2026</p>
+    <h2 class="site-header-title">Anjali's <em>Birthday Scrapbook</em></h2>
+    <div class="header-rule"></div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION B — Birthday Note                             -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-note" class="section" aria-labelledby="note-heading">
+    <span class="section-hand-label reveal">a little note ✦</span>
+    <h2 id="note-heading" class="section-title reveal">
+      Happy Birthday, <em>Anjali.</em>
+    </h2>
+    <div class="section-rule reveal"></div>
+
+    <div class="birthday-note-wrap reveal">
+      <div class="birthday-note-card" role="article" aria-label="Birthday message">
+        <!-- Paper tape decorations -->
+        <div class="tape tape-tl" aria-hidden="true"></div>
+        <div class="tape tape-tr" aria-hidden="true"></div>
+        <div class="lined-bg" aria-hidden="true"></div>
+
+        <p class="birthday-note-name">Happy Birthday, Anjali ✨</p>
+
+        <div class="birthday-note-body">
+          <p>Here's to 20 — a fresh chapter, new experiences, plenty of reasons to laugh, and adventures worth remembering.</p>
+          <p>I hope this year brings you happiness, exciting opportunities, good people, and lots of moments that make you genuinely smile.</p>
+          <p>You deserve a really good year. Have the very best birthday!</p>
+        </div>
+
+        <div class="note-footer" aria-hidden="true">
+          <!-- Tiny white lily -->
+          <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+            <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+            <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+          </svg>
+          Twenty looks good on you.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION C — Childhood to Now                          -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-photos" class="section" aria-labelledby="photos-heading">
+    <span class="section-hand-label reveal">then & now 📷</span>
+    <h2 id="photos-heading" class="section-title reveal">
+      From little Anjali to <em>Chapter 20.</em>
+    </h2>
+    <div class="section-rule reveal"></div>
+
+    <div class="photo-reveal-wrap reveal" role="region" aria-label="Photo gallery — childhood and present">
+
+      <!-- STATE: Childhood (shown first) -->
+      <div id="photo-childhood" class="photo-state active" aria-label="Childhood photograph">
+        <div class="polaroid-frame" role="img" aria-label="Anjali's childhood photograph">
+          <!-- Tape decoration -->
+          <div class="tape tape-tl" aria-hidden="true"></div>
+          <div class="polaroid-img-wrap">
+            <img
+              src="assets/anjali-childhood.jpg"
+              alt="Anjali as a child — a joyful glimpse of little Anjali before chapter 20"
+              data-photo="childhood"
+              loading="lazy"
+            />
+          </div>
+          <p class="polaroid-caption">Little Anjali,<br/>before chapter 20.</p>
+        </div>
+
+        <div style="text-align:center;">
+          <p style="font-family:var(--font-hand);font-size:1rem;color:var(--ink-muted);margin-bottom:1.2rem;font-style:italic;">
+            Some things start a long time before you realise it.
+          </p>
+          <button
+            id="btn-reveal-current"
+            class="btn-photo-toggle"
+            type="button"
+            aria-label="See Anjali's current photograph"
+            aria-pressed="false"
+          >
+            See you now &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- STATE: Current (hidden initially) -->
+      <div id="photo-current" class="photo-state" aria-label="Current photograph" aria-hidden="true">
+        <div class="polaroid-frame alt" role="img" aria-label="Anjali's current photograph">
+          <div class="tape tape-tr" aria-hidden="true"></div>
+          <div class="polaroid-img-wrap">
+            <img
+              src="assets/anjali-current.jpg"
+              alt="Anjali today — stepping into her 20th chapter"
+              data-photo="current"
+              loading="lazy"
+            />
+          </div>
+          <p class="polaroid-caption">And here you are,<br/>stepping into a whole new chapter.</p>
+        </div>
+
+        <div style="text-align:center;">
+          <p class="photo-reveal-note">
+            Some things change. The adventures are still waiting.
+          </p>
+          <button
+            id="btn-back-childhood"
+            class="btn-photo-toggle"
+            type="button"
+            aria-label="Go back to the childhood photograph"
+            style="margin-top:1rem;"
+          >
+            &larr; Back to the beginning
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /photo-reveal-wrap -->
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION D — How We Met                                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-met" class="section" aria-labelledby="met-heading">
+    <span class="section-hand-label reveal">funny how things happen ✦</span>
+    <h2 id="met-heading" class="section-title reveal">
+      Funny how some things <em>just happen.</em>
+    </h2>
+    <div class="section-rule reveal"></div>
+
+    <div class="met-card reveal" role="article" aria-label="How we met">
+      <!-- Paper clip decoration -->
+      <div style="position:absolute;top:-2px;right:32px;" aria-hidden="true">
+        <svg width="14" height="44" viewBox="0 0 14 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="10" height="40" rx="5" stroke="#c0a060" stroke-width="2.5" fill="none"/>
+          <rect x="4" y="10" width="6" height="22" rx="3" stroke="#c0a060" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <div class="tape tape-bl" aria-hidden="true"></div>
+
+      <div class="met-body">
+        <p>I didn't expect a random meeting to turn into a connection that means this much to me. But somewhere along the way, our conversations, shared interests, and random plans became something I genuinely look forward to.</p>
+        <p>It's funny how life works sometimes. I'm just really glad our paths crossed.</p>
+      </div>
+      <div class="met-signature" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+          <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+          <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+        </svg>
+        — gladly unexpected
+      </div>
+    </div>
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION E — Shared Adventures                         -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-adventures" class="section-wide" aria-labelledby="adventures-heading">
+    <div style="padding:0 1.5rem;">
+      <span class="section-hand-label reveal">our kind of thing 🎬</span>
+      <h2 id="adventures-heading" class="section-title reveal">
+        Our kind of <em>adventures.</em>
+      </h2>
+      <div class="section-rule reveal"></div>
+    </div>
+
+    <div class="adventures-grid reveal" role="list">
+
+      <!-- Card 1: Horror Movies -->
+      <article class="adventure-card" role="listitem" aria-label="Horror movie nights">
+        <div class="tape tape-tl" aria-hidden="true"></div>
+        <div class="adventure-icon icon-horror" aria-hidden="true">🎬</div>
+        <h3 class="adventure-card-title">Horror Movie Nights</h3>
+        <p class="adventure-card-body">Because apparently, normal movies aren't always enough. The fun is in the suspense, the jump scares, and talking about it afterward.</p>
+        <span class="card-hand-note" aria-hidden="true">always worth it ✓</span>
+      </article>
+
+      <!-- Card 2: Places With a Story -->
+      <article class="adventure-card" role="listitem" aria-label="Places with a story">
+        <div class="tape tape-tr" aria-hidden="true"></div>
+        <div class="adventure-icon icon-places" aria-hidden="true">🗺️</div>
+        <h3 class="adventure-card-title">Places With a Story</h3>
+        <p class="adventure-card-body">Some places have an atmosphere you just can't explain. There's something interesting about discovering the stories behind them.</p>
+        <span class="card-hand-note" aria-hidden="true">more still waiting ✓</span>
+      </article>
+
+      <!-- Card 3: A Little Adrenaline -->
+      <article class="adventure-card" role="listitem" aria-label="Thrilling activities">
+        <div class="tape tape-bl" aria-hidden="true"></div>
+        <div class="adventure-icon icon-thrill" aria-hidden="true">⚡</div>
+        <h3 class="adventure-card-title">A Little Adrenaline</h3>
+        <p class="adventure-card-body">More experiences, more excitement, and more stories we'll probably laugh about later. Chapter 20 needs a few of those.</p>
+        <span class="card-hand-note" aria-hidden="true">we'll figure it out ✓</span>
+      </article>
+
+      <!-- Card 4: Adventures Still Waiting -->
+      <article class="adventure-card" role="listitem" aria-label="Future adventures">
+        <div class="tape tape-br" aria-hidden="true"></div>
+        <div class="adventure-icon icon-future" aria-hidden="true">
+          <!-- White lily mini icon -->
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+            <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+            <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3 class="adventure-card-title">Adventures Still Waiting</h3>
+        <p class="adventure-card-body">Chapter 20 has plenty of places to explore and experiences left to collect. The list is still very much open.</p>
+        <span class="card-hand-note" aria-hidden="true">chapter 20 has room ✓</span>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION F — Envelope Letter                           -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-letter" class="section" aria-labelledby="letter-heading">
+    <span class="section-hand-label reveal">something personal ✉</span>
+    <h2 id="letter-heading" class="section-title reveal">
+      A little note <em>just for her.</em>
+    </h2>
+    <div class="section-rule reveal"></div>
+
+    <div class="envelope-wrap reveal">
+
+      <!-- Envelope -->
+      <div class="envelope-container">
+        <button
+          id="envelope"
+          class="envelope"
+          type="button"
+          aria-label="Envelope — click to open your letter"
+          aria-expanded="false"
+          aria-controls="letter-paper"
+        >
+          <div class="envelope-body">
+            <!-- SVG flap -->
+            <svg class="envelope-flap-svg" viewBox="0 0 340 100" preserveAspectRatio="none" height="100" aria-hidden="true">
+              <polygon points="0,0 340,0 170,90" fill="#ede3d2" stroke="#e8dcc8" stroke-width="1"/>
+            </svg>
+            <span class="envelope-label">A little note for Anjali</span>
+            <!-- Lily on envelope -->
+            <span class="envelope-lily" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+                <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+                <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+                <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+                <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+              </svg>
+            </span>
+            <!-- Wax seal -->
+            <span class="envelope-seal" aria-hidden="true">✦</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Open button (alternative trigger) -->
+      <button id="envelope-open-btn" class="envelope-open-btn" type="button" aria-controls="letter-paper">
+        Open your letter
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 15l-9-9-9 9"/></svg>
+      </button>
+
+      <!-- The actual letter -->
+      <article
+        id="letter-paper"
+        class="letter-paper"
+        role="document"
+        aria-label="Birthday letter to Anjali"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <!-- Lined paper background -->
+        <div class="letter-lined-bg" aria-hidden="true"></div>
+
+        <!-- Lily deco on letter -->
+        <span class="letter-lily-deco" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+            <ellipse cx="20" cy="22" rx="5" ry="13" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+            <circle cx="20" cy="20" r="3.5" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+            <line x1="20" y1="33" x2="20" y2="40" stroke="#7a9b7e" stroke-width="1.5"/>
+          </svg>
+        </span>
+
+        <p class="letter-greeting">Brooooooooo ,</p>
+
+        <div class="letter-body">
+          <p>First of all, happy 20th birthday!</p>
+          <p>It's funny how we met unexpectedly, and now you're someone who has become genuinely important to me. I didn't plan for that — it just happened naturally, and I'm really glad it did.</p>
+          <p>From horror movies to talking about places we'd like to explore, it's nice having someone to share these slightly unusual interests with.</p>
+          <p>I appreciate the conversations, the random moments, the laughs, and the fact that there's always something interesting we can talk about.</p>
+          <p>I hope this new chapter brings you lots of happiness, new experiences, and plenty of opportunities to do the things you love. And hopefully, we get to add a few more adventures to our list too.</p>
+          <p>No huge birthday speech. I just wanted to remind you that I'm glad I met you, and I hope you know how much I appreciate having you in my life.</p>
+          <p>Have the happiest birthday, Anjali. Enjoy your day, and keep being yourself.</p>
+        </div>
+
+        <p class="letter-sign">— Someone who's really glad our paths crossed.</p>
+
+        <button id="btn-close-letter" class="btn-close-letter" type="button" aria-label="Close the letter">
+          ✕ Close letter
+        </button>
+      </article>
+
+    </div><!-- /envelope-wrap -->
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION G — Chapter 20 Wishlist                       -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-wishlist" class="section" aria-labelledby="wish-heading">
+    <span class="section-hand-label reveal">little wishes ✦</span>
+    <h2 id="wish-heading" class="section-title reveal">
+      Things chapter 20 <em>needs more of.</em>
+    </h2>
+    <div class="section-rule reveal"></div>
+
+    <div class="wishlist-grid reveal" role="list" aria-label="Wishes for chapter 20">
+
+      <div class="wish-note" role="listitem" tabindex="0" aria-label="More horror movies">
+        <span class="wish-icon" aria-hidden="true">🎬</span>
+        <p class="wish-text">More horror movies</p>
+      </div>
+
+      <div class="wish-note" role="listitem" tabindex="0" aria-label="More places to discover">
+        <span class="wish-icon" aria-hidden="true">🗺️</span>
+        <p class="wish-text">More places to discover</p>
+      </div>
+
+      <div class="wish-note" role="listitem" tabindex="0" aria-label="More exciting experiences">
+        <span class="wish-icon" aria-hidden="true">⚡</span>
+        <p class="wish-text">More exciting experiences</p>
+      </div>
+
+      <div class="wish-note" role="listitem" tabindex="0" aria-label="More random conversations">
+        <span class="wish-icon" aria-hidden="true">💬</span>
+        <p class="wish-text">More random conversations & laughs</p>
+      </div>
+
+      <div class="wish-note" role="listitem" tabindex="0" aria-label="More memories worth keeping">
+        <span class="wish-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+            <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+            <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+            <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+          </svg>
+        </span>
+        <p class="wish-text">More memories worth keeping</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="deco-divider reveal" aria-hidden="true">
+    <span class="deco-divider-text">✦ ✦ ✦</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SECTION H — Birthday Finale                           -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="section-finale" aria-labelledby="finale-heading">
+    <div class="finale-wrap reveal">
+
+      <!-- Lily row -->
+      <div class="finale-lily-row" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+          <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+          <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+        </svg>
+        <span style="font-family:var(--font-hand);font-size:0.9rem;color:var(--ink-muted);">15 · October · 2026</span>
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+          <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+          <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <h2 id="finale-heading" class="finale-heading">
+        Here's to your <em>chapter 20,</em><br/>Anjali.
+      </h2>
+
+      <p class="finale-body">
+        More reasons to smile, more things to discover, and more little moments that turn into good memories. I hope this year is kind to you and gives you plenty to look forward to.
+      </p>
+
+      <p class="finale-last-line">
+        Happy Birthday, Anjali. I'm really glad I met you.
+      </p>
+
+      <p class="finale-signature">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(60 20 22)"/>
+          <ellipse cx="20" cy="22" rx="4" ry="11" fill="#f8f4ee" stroke="#c9848a" stroke-width="1.2" transform="rotate(-60 20 22)"/>
+          <circle cx="20" cy="20" r="3" fill="#f5dde0" stroke="#c9848a" stroke-width="1"/>
+          <line x1="20" y1="31" x2="20" y2="38" stroke="#7a9b7e" stroke-width="1.5"/>
+        </svg>
+        Made with care, just for you.
+      </p>
+
+      <button class="btn-reread-letter" type="button" aria-label="Re-read the birthday letter">
+        Read your letter again
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+      </button>
+
+    </div>
+  </section>
+
+</main>
+<!-- /scrapbook -->
+
+
+<!-- ┌─────────────────────────────────────────────────────────┐ -->
+<!-- │  SITE FOOTER                                            │ -->
+<!-- └─────────────────────────────────────────────────────────┘ -->
+<footer class="site-footer" role="contentinfo">
+  <p>Made with care for Anjali's 20th birthday — 15 October 2026.</p>
+  <p style="margin-top:0.3rem;font-size:0.78rem;opacity:0.7;">
+    This page is a personal gift. Note: content may be accessible to anyone with the published URL.
+  </p>
+</footer>
+
+
+<!-- ┌─────────────────────────────────────────────────────────┐ -->
+<!-- │  MUSIC CONTROL (fixed, bottom-right)                   │ -->
+<!-- └─────────────────────────────────────────────────────────┘ -->
+<div class="music-control" role="region" aria-label="Background music control">
+  <span id="music-label" class="music-label" aria-hidden="true">Play music</span>
+  <button
+    id="music-btn"
+    class="music-btn"
+    type="button"
+    aria-label="Play background music"
+    title="Toggle background music"
+  >
+    <!-- Icon set by JS -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5.14v14l11-7-11-7z"/>
+    </svg>
+  </button>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
