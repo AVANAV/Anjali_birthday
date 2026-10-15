@@ -18,6 +18,7 @@ anjali-birthday-scrapbook/
 ├── assets/
 │   ├── anjali-current.jpg   ← ⚠️ ADD THIS FILE (see below)
 │   ├── anjali-childhood.jpg ← ⚠️ ADD THIS FILE (see below)
+│   ├── musicbox-song.mp3    ← Music box song audio file
 │   └── background-music.mp3 ← Optional — add if you have music
 └── README.md
 ```

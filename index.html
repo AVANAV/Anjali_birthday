@@ -17,6 +17,11 @@
   <audio id="bg-audio" loop preload="none">
     <source src="assets/background-music.mp3" type="audio/mpeg" />
   </audio>
+
+  <!-- Music box audio -->
+  <audio id="musicbox-audio" preload="auto">
+    <source src="assets/musicbox-song.mp3" type="audio/mpeg" />
+  </audio>
 </head>
 
 <body>
@@ -231,18 +236,18 @@
             <div class="hb-bar"></div>
             <div class="hb-bar"></div>
           </div>
-          <p id="hb-status-text" aria-live="polite">♪ Happy Birthday to You</p>
+          <p id="hb-status-text" aria-live="polite">♪ Happy Birthday, Anjali</p>
           <div class="hb-controls">
-            <button id="hb-play-btn" type="button" aria-label="Play Happy Birthday song">
+            <button id="hb-play-btn" type="button" aria-label="Play birthday song">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M8 5.14v14l11-7-11-7z" />
               </svg>
             </button>
             <div class="hb-btn-label">
-              <strong>Play</strong> Happy Birthday to You<br />
-              <span style="font-size:0.78rem;opacity:0.75;">synthesised just for you 🌸</span>
+              <strong id="hb-action-label">Play</strong> <span id="hb-song-name">Birthday Song</span><br />
+              <span style="font-size:0.78rem;opacity:0.75;">for you 🌸</span>
             </div>
-            <button id="hb-stop-btn" type="button" aria-label="Stop Happy Birthday song" disabled title="Stop">
+            <button id="hb-stop-btn" type="button" aria-label="Stop birthday song" disabled title="Stop">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <rect x="4" y="4" width="16" height="16" rx="2" />
               </svg>

@@ -19,7 +19,9 @@ function initCoverReveal() {
   if (!cover || !book || !openBtn) return;
 
   openBtn.addEventListener('click', () => {
+    openBtn.disabled = true;
     launchConfetti();
+    startHappyBirthday();
     cover.classList.add('hidden');
     cover.addEventListener('transitionend', () => {
       cover.style.display = 'none';
@@ -273,14 +275,7 @@ function playNote(ctx, freq, startTime, duration, gain = 0.32) {
   return startTime + duration;
 }
 
-function startHappyBirthday() {
-  if (hbPlaying) {
-    stopHappyBirthday();
-    return;
-  }
-  stopHappyBirthday();
-
-  // If background audio is playing, pause it to prevent clash
+function pauseBackgroundMusic() {
   const bgAudio  = $('#bg-audio');
   const musicBtn = $('#music-btn');
   const bgLabel  = $('#music-label');
@@ -293,7 +288,10 @@ function startHappyBirthday() {
     }
     if (bgLabel) bgLabel.textContent = 'Play music';
   }
+}
 
+function playSynthesizedBirthday() {
+  stopSynthesizedBirthday();
   const ctx   = getAudioCtx();
   const BPM   = 82;
   const beat  = 60 / BPM;
@@ -318,7 +316,7 @@ function startHappyBirthday() {
   }, (totalDuration + 0.5) * 1000);
 }
 
-function stopHappyBirthday() {
+function stopSynthesizedBirthday() {
   clearTimeout(hbTimeout);
   if (audioCtx) {
     hbNodes.forEach(n => {
@@ -327,50 +325,114 @@ function stopHappyBirthday() {
     });
   }
   hbNodes   = [];
+}
+
+async function startHappyBirthday() {
+  // If background audio is playing, pause it to prevent clash
+  pauseBackgroundMusic();
+
+  const musicboxAudio = $('#musicbox-audio');
+  if (musicboxAudio) {
+    try {
+      musicboxAudio.volume = 0.8;
+      await musicboxAudio.play();
+      hbPlaying = true;
+      updateHBPlayerUI();
+      return;
+    } catch (err) {
+      console.warn('Could not play musicbox audio, falling back to synthesized notes:', err.message);
+    }
+  }
+
+  // Fallback to synthesized melody
+  playSynthesizedBirthday();
+}
+
+function pauseHappyBirthday() {
+  const musicboxAudio = $('#musicbox-audio');
+  if (musicboxAudio && !musicboxAudio.paused) {
+    musicboxAudio.pause();
+  }
+  stopSynthesizedBirthday();
+  hbPlaying = false;
+  updateHBPlayerUI();
+}
+
+function stopHappyBirthday() {
+  const musicboxAudio = $('#musicbox-audio');
+  if (musicboxAudio) {
+    musicboxAudio.pause();
+    musicboxAudio.currentTime = 0;
+  }
+  stopSynthesizedBirthday();
   hbPlaying = false;
   updateHBPlayerUI();
 }
 
 function updateHBPlayerUI() {
-  const playBtn   = $('#hb-play-btn');
-  const stopBtn   = $('#hb-stop-btn');
-  const bars      = $$('.hb-bar');
-  const statusTxt = $('#hb-status-text');
+  const playBtn     = $('#hb-play-btn');
+  const stopBtn     = $('#hb-stop-btn');
+  const bars        = $$('.hb-bar');
+  const statusTxt   = $('#hb-status-text');
+  const actionLabel = $('#hb-action-label');
 
   if (!playBtn) return;
 
+  const musicboxAudio = $('#musicbox-audio');
+  const hasProgress = musicboxAudio && musicboxAudio.currentTime > 0 && !musicboxAudio.ended;
+
   if (hbPlaying) {
     playBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`;
-    playBtn.setAttribute('aria-label', 'Pause Happy Birthday song');
+    playBtn.setAttribute('aria-label', 'Pause birthday song');
     playBtn.classList.add('playing');
     if (stopBtn) stopBtn.disabled = false;
     bars.forEach(b => b.classList.add('active'));
     if (statusTxt) statusTxt.textContent = '♪ Playing for Anjali…';
+    if (actionLabel) actionLabel.textContent = 'Pause';
   } else {
     playBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>`;
-    playBtn.setAttribute('aria-label', 'Play Happy Birthday song');
+    playBtn.setAttribute('aria-label', 'Play birthday song');
     playBtn.classList.remove('playing');
-    if (stopBtn) stopBtn.disabled = true;
+    if (stopBtn) stopBtn.disabled = !hasProgress;
     bars.forEach(b => b.classList.remove('active'));
-    if (statusTxt) statusTxt.textContent = '♪ Happy Birthday to You';
+    if (statusTxt) statusTxt.textContent = '♪ Happy Birthday, Anjali';
+    if (actionLabel) actionLabel.textContent = hasProgress ? 'Resume' : 'Play';
   }
 }
 
 function initHappyBirthdayPlayer() {
-  const playBtn = $('#hb-play-btn');
-  const stopBtn = $('#hb-stop-btn');
+  const playBtn       = $('#hb-play-btn');
+  const stopBtn       = $('#hb-stop-btn');
+  const musicboxAudio = $('#musicbox-audio');
   if (!playBtn) return;
+
+  if (musicboxAudio) {
+    musicboxAudio.addEventListener('play', () => {
+      pauseBackgroundMusic();
+      hbPlaying = true;
+      updateHBPlayerUI();
+    });
+    musicboxAudio.addEventListener('pause', () => {
+      hbPlaying = false;
+      updateHBPlayerUI();
+    });
+    musicboxAudio.addEventListener('ended', () => {
+      hbPlaying = false;
+      musicboxAudio.currentTime = 0;
+      updateHBPlayerUI();
+    });
+  }
 
   playBtn.addEventListener('click', () => {
     if (hbPlaying) {
-      stopHappyBirthday();
+      pauseHappyBirthday();
     } else {
       startHappyBirthday();
     }
   });
 
   stopBtn?.addEventListener('click', () => {
-    if (hbPlaying) stopHappyBirthday();
+    stopHappyBirthday();
   });
 
   updateHBPlayerUI();
